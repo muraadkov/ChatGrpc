@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "ChatService.Protos";
+
+service ChatRoomService {
+	rpc Join(stream Message) returns (stream Message);
+	rpc MessagesHistory(ChatLookup) returns (stream Message);
+}
+
+message Message {
+	string user = 1;
+	string text = 2;
+	string chatHubId = 3;
+}
+
+message ChatHubInfo {
+	int32 id = 1;
+	string name = 2;
+}
+
+message ChatLookup {
+	int32 id = 1;
+}
